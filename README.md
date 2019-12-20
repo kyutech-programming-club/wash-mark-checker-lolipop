@@ -10,8 +10,12 @@ lolipopデプロイ用
 洗濯や乾燥の方法、アイロンのかけ方やクリーニングの方法などが示されている。  
 全41種類。世界共通。
 
-- 洗濯表示をまとめて調べる
+- 洗濯表示をまとめて調べる  
+![screencapture-wash-mark-checker-lolipop-io-2019-12-20-20_33_43](https://user-images.githubusercontent.com/20394831/71253446-45ef3980-236b-11ea-896a-d3e3052f4e51.png)
+
 - 洗濯表示を個別に調べる
+![screencapture-wash-mark-checker-lolipop-io-individual-2019-12-20-20_34_01](https://user-images.githubusercontent.com/20394831/71253445-45ef3980-236b-11ea-9452-7a586cfb24eb.png)
+
 
 ## Features
 - 洗濯表示の識別
