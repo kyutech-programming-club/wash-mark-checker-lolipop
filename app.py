@@ -31,6 +31,40 @@ sys.path.append("./keras_yolo3/")
 
 from my_yolo import MyYOLO
 
+
+def rotateImage(img, orientation):
+    """
+    画像ファイルをOrientationの値に応じて回転させる
+    """
+    #orientationの値に応じて画像を回転させる
+    if orientation == 1:
+        pass
+    elif orientation == 2:
+        #左右反転
+        img_rotate = img.transpose(Image.FLIP_LEFT_RIGHT)
+    elif orientation == 3:
+        #180度回転
+        img_rotate = img.transpose(Image.ROTATE_180)
+    elif orientation == 4:
+        #上下反転
+        img_rotate = img.transpose(Image.FLIP_TOP_BOTTOM)
+    elif orientation == 5:
+        #左右反転して90度回転
+        img_rotate = img.transpose(Image.FLIP_LEFT_RIGHT).transpose(Image.ROTATE_90)
+    elif orientation == 6:
+        #270度回転
+        img_rotate = img.transpose(Image.ROTATE_270)
+    elif orientation == 7:
+        #左右反転して270度回転
+        img_rotate = img.transpose(Image.FLIP_LEFT_RIGHT).transpose(Image.ROTATE_270)
+    elif orientation == 8:
+        #90度回転
+        img_rotate = img.transpose(Image.ROTATE_90)
+    else:
+        pass
+
+    return img_rotate
+
 yolo = MyYOLO(
     # classes_path="keras_yolo3/model_data/coco_classes.txt",
     classes_path="voc_classes.txt",
@@ -60,6 +94,18 @@ def predict():
             print("success")
 
             image = Image.open(img)
+
+            #exif対応
+            try:
+                #exif情報取得
+                exifinfo = image._getexif()
+                #exif情報からOrientationの取得
+                orientation = exifinfo.get(0x112, 1)
+                #画像を回転
+                image = rotateImage(image, orientation)
+            except:
+                pass
+
             image_size_yolo = 320
             rgb_im = image.convert('RGB')
             rgb_im.thumbnail([image_size_yolo,image_size_yolo])
